@@ -1,0 +1,240 @@
+@import '@styles/common/_normalize.scss';
+@import '@styles/common/_header.scss';
+@import '@styles/common/_footer.scss';
+%campaign-hover-active {
+    background-color: $campaign-background-color;
+    .acions {
+        h4 {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+    .index {
+        background-color: $btn-background;
+        color: $campaign-background-color;
+    }
+}
+%transition {
+    transition: all 0.3s ease-in;
+    -webkit-transition: all 0.3s ease-in;
+}
+.list-campaign-wrapper {
+    &__header {
+      padding: 20px;
+      .icon {
+        max-width: 30px;
+        span {
+              display: inline-block;
+              height: 3px;
+              width: 20px;
+              background-color: #e5e5e5;
+              float: left;
+              &:nth-child(1) {
+               max-width: 20px;
+              }
+              &:nth-child(2) {
+                margin: 3px 0;
+              }
+        }
+      }
+      p {
+        padding: 0 20px;
+      }
+      .btn {
+        background-color: $btn-background;
+        border: 1px solid $btn-background;
+        color: $btn-font;
+        padding: 10px 30px;
+        font-weight: $bold-weight;
+        font-size: (16/$base-font-size)+rem;
+        cursor: pointer;
+      }
+    }
+
+    &__campaign-details {
+        border-top: 1px solid $campaign-border-color;
+        &__list {
+            min-height: 450px;
+            max-height: calc(100vh - 120px);
+            height: calc(100vh - 120px);
+            overflow-x: scroll;
+            border-right: 1px solid $campaign-border-color;
+            .campaign {
+                padding: 20px 30px;
+                border-width: 0 0px 1px 0px;
+                border-style: solid;
+                border-color: $campaign-border-color;
+                @extend %transition;
+                .index {
+                    width: 30px;
+                    height: 30px;
+                    background-color: $campaign-background-color;
+                    color: $btn-background;
+                    border-radius: 50%;
+                    display: flex;
+                    display: -webkit-flex;
+                    font-size: 10px;
+                    font-weight: $bold-weight;
+                    margin-right: 20px;
+                    @extend %transition;
+                    span {
+                        margin: auto;
+                    }                
+                }
+                .name {
+                    color: #bababb;
+                    h3 {
+                        font-weight: $medium-weight;
+                    }
+                    h4 {
+                        font-weight: $light-weight;
+                        font-size: (10/$base-font-size)+rem;
+                    }
+                }
+                .acions {
+                    max-width: 40%;
+                    width: 100%;
+                    h4 {
+                        font-weight: $light-weight;
+                        font-size: (10/$base-font-size)+rem;
+                        opacity: 0;
+                        visibility: hidden;
+                        @extend %transition;
+                    }
+                }
+                &.active {
+                    @extend %campaign-hover-active;
+                }
+                &:hover {
+                    @extend %campaign-hover-active;
+                }
+            }
+        }
+        &__history {
+            background-color: $campaign-background-color;
+            padding: 20px 30px;
+            .title {
+                margin-bottom: 60px;
+                h3 {
+                    font-size: 1rem;
+                    font-weight: $regular-weight;
+                    margin-bottom: 5px;
+                    i {
+                        margin-left: -15px;
+                    }
+                }
+            }
+            .details {
+                ul {
+                    list-style: none;
+                    li {
+                        display: flex;
+                        position: relative;
+                        &:after {
+                            content: "";
+                            position: absolute;
+                            height: 100%;
+                            width: 1px;
+                            border-left: 1px dashed #97abbb;
+                            top: 0;
+                            left: 15px;
+                        }
+                        &:last-child {
+                            &:after {
+                                content: none;
+                            }
+                        }
+                    }
+                }
+                .icon {
+                    width: 30px;
+                    height: 30px;
+                    border-radius: 50%;
+                    background-color: $btn-background;
+                    position: relative;
+                    z-index: 1;
+                    i {
+                        font-size: (10/$base-font-size)+rem;
+                        margin: auto;
+                        color: #ffffff;
+                    }
+                    &.paused {
+                        background-color: #ebc40c;
+                    }
+                    &.created {
+                        background-color: #9da9b6;
+                    }
+                }
+                .comments-details {
+                    margin: 0 0 60px 30px;
+                    h5 {
+                        font-weight: $regular-weight;
+                    }
+                    h6 {
+                        font-weight: $regular-weight;
+                        span {
+                            color: $btn-background;
+                            font-weight: $bold-weight;
+                        }
+                    }
+                }
+            }
+        }
+    }
+  }
+
+.create-campaign-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    opacity: 0;
+    z-index: 111;
+    visibility: hidden;
+    &.active {
+        opacity: 1;
+        visibility: visible;
+    }
+    .form {
+        margin: auto;
+        background-color: #fff;
+        padding: 30px 30px;
+        min-width: 500px;
+        position: relative;
+        border-radius: 5px;
+        .close-btn {
+            position: absolute;
+            top: 5px;
+            right: 8px;
+            font-weight: bold;
+        }
+        h4 {
+            font-size: (20/$base-font-size)+rem;
+        }
+        .form-group {
+            label {
+                display: block;
+                margin-bottom: 5px;
+            }
+            input {
+                height: 45px;
+                width: 100%;
+                border: 1px solid #ddd;
+                padding: 0 10px;
+                font-size: 0.9rem;
+            }
+            .btn {
+                background-color: $btn-background;
+                border: 1px solid $btn-background;
+                color: $btn-font;
+                padding: 10px 30px;
+                font-weight: $bold-weight;
+                font-size: (16/$base-font-size)+rem;
+                cursor: pointer;
+            }
+        }
+    }
+}
